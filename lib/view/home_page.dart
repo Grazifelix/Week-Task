@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   List<String> test = ['Tarefa ', "Tarefa 1", "Tarefa 2"];
-   bool selected = false;
+  bool selected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,36 +50,37 @@ class HomePageState extends State<HomePage> {
       {required String dayOfWeek,
       required List<String> tasks,
       required BuildContext context}) {
-   
-
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       color: AppColors.brown,
       child: Column(children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            SizedBox(
-              width: 40,
-            ),
-            Text(dayOfWeek,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColors.yellow,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                )),
-            IconButton(
-                onPressed: () {
-                  tasks.add("new Task");
-                  setState(() {});
-                },
-                icon: Icon(
-                  Icons.add_rounded,
-                  color: AppColors.yellow,
-                  size: 30,
-                ))
-          ],
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              SizedBox(
+                width: 40,
+              ),
+              Text(dayOfWeek,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: AppColors.yellow,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    tasks.add("new Task");
+                    setState(() {});
+                  },
+                  icon: Icon(
+                    Icons.add_rounded,
+                    color: AppColors.yellow,
+                    size: 30,
+                  ))
+            ],
+          ),
         ),
         Expanded(
             child: ListView.builder(
@@ -93,16 +94,15 @@ class HomePageState extends State<HomePage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(2)),
                         contentPadding: EdgeInsets.all(5),
-                        tileColor: selected? AppColors.green : AppColors.yellow,
+                        tileColor:
+                            selected ? AppColors.green : AppColors.yellow,
                         leading: IconButton(
                             icon: selected
                                 ? Icon(Icons.circle)
                                 : Icon(Icons.circle_outlined),
                             onPressed: () {
-                            
-                              print(selected);
                               setState(() {
-                                if(selected == false) {
+                                if (selected == false) {
                                   selected = true;
                                 } else {
                                   selected = false;
@@ -112,8 +112,11 @@ class HomePageState extends State<HomePage> {
                         title: Text(
                           tasks[index],
                           style: TextStyle(
-                            decoration: selected ? TextDecoration.lineThrough : TextDecoration.none,
-                              fontSize: 18, fontWeight: FontWeight.w400),
+                              decoration: selected
+                                  ? TextDecoration.lineThrough
+                                  : TextDecoration.none,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     )))
